@@ -19,5 +19,16 @@
   "bugs": {
     "url": "https://github.com/zeallat/korea-administrative-area-geo-json-util/issues"
   },
-  "homepage": "https://github.com/zeallat/korea-administrative-area-geo-json-util#readme"
+  "homepage": "https://github.com/zeallat/korea-administrative-area-geo-json-util#readme",
+  "devDependencies": {
+    "@types/geojson": "^7946.0.7",
+    "@types/lru-cache": "^5.1.0",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.3.0",
+    "lru-cache": "^6.0.0",
+    "martinez-polygon-clipping": "^0.7.0",
+    "rxjs": "^6.6.3"
+  }
 }
