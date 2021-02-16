@@ -14,11 +14,11 @@ import { UnionAdministrativeAreaFeatureCache } from "./UnionAdministrativeAreaFe
  * 행정구역 GeoJSON 레포지토리
  */
 export class KoreaAdministrativeAreaGeoJsonUtil {
-  private admSdGeoJson: AdministrativeAreaFeatureCollection;
+  private readonly admSdGeoJson: AdministrativeAreaFeatureCollection;
 
-  private admSggGeoJson: AdministrativeAreaFeatureCollection;
+  private readonly admSggGeoJson: AdministrativeAreaFeatureCollection;
 
-  private admAllGeoJson: AdministrativeAreaFeatureCollection;
+  private readonly admAllGeoJson: AdministrativeAreaFeatureCollection;
 
   // 행정구역 geojson 캐시 인스턴스
   unionAdministrativeAreaFeatureCache = new UnionAdministrativeAreaFeatureCache();

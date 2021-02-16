@@ -1,1 +1,1 @@
-export { memoizedUnionAdministrativeAreaFeature } from "./memoizedUnionAdministrativeAreaFeature";
+export { KoreaAdministrativeAreaGeoJsonUtil } from "./KoreaAdministrativeAreaGeoJsonUtil";

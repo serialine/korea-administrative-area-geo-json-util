@@ -16,7 +16,19 @@ module.exports = {
     project: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint"],
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"],
+    },
+    "import/extensions": [".js", ".ts"],
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts", ".json", ".svg", ".gif", ".png"],
+      },
+    },
+  },
   rules: {
     "import/prefer-default-export": "off",
+    "import/extensions": "off",
   },
 };
