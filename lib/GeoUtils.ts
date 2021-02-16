@@ -7,7 +7,7 @@ import {
 } from "geojson";
 import * as turf from "@turf/turf";
 import { Coordinates } from "./Coordinates";
-import { unionAdministrativeAreaFeatureCache } from "./memoizedUnionAdministrativeAreaFeature";
+// import { unionAdministrativeAreaFeatureCache } from "./memoizedUnionAdministrativeAreaFeature";
 
 /**
  * Position값의 3차원 배열 여부를 반환합니다.
@@ -18,21 +18,21 @@ export const is3DPosition = (
   return Array.isArray(coordinates[0][0][0]);
 };
 
-let unionAdministrativeAreaFeatureCacheInitCounter = 0;
+// let unionAdministrativeAreaFeatureCacheInitCounter = 0;
 
-export const initUnionAdministrativeAreaFeatureCache = () => {
-  // eslint-disable-next-line no-plusplus
-  unionAdministrativeAreaFeatureCacheInitCounter++;
-};
-
-// 캐시 초기화
-export const clearUnionAdministrativeAreaFeatureCache = () => {
-  // eslint-disable-next-line no-plusplus
-  unionAdministrativeAreaFeatureCacheInitCounter--;
-  if (unionAdministrativeAreaFeatureCacheInitCounter === 0) {
-    unionAdministrativeAreaFeatureCache.clear();
-  }
-};
+// export const initUnionAdministrativeAreaFeatureCache = () => {
+//   // eslint-disable-next-line no-plusplus
+//   unionAdministrativeAreaFeatureCacheInitCounter++;
+// };
+//
+// // 캐시 초기화
+// export const clearUnionAdministrativeAreaFeatureCache = () => {
+//   // eslint-disable-next-line no-plusplus
+//   unionAdministrativeAreaFeatureCacheInitCounter--;
+//   if (unionAdministrativeAreaFeatureCacheInitCounter === 0) {
+//     unionAdministrativeAreaFeatureCache.clear();
+//   }
+// };
 
 /**
  * 주어진 Polygon | MultiPolygon geojson을 deep copy 합니다.
