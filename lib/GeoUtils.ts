@@ -5,7 +5,9 @@ import {
   Polygon,
   Position,
 } from "geojson";
-import * as turf from "@turf/turf";
+import bbox from "@turf/bbox";
+import clone from "@turf/clone";
+import circle from "@turf/circle";
 import { Coordinates } from "./Coordinates";
 
 /**
@@ -23,7 +25,7 @@ export const is3DPosition = (
 export const cloneMultiPolygons = (
   features: Feature<Polygon | MultiPolygon>[]
 ): Feature<Polygon | MultiPolygon>[] =>
-  features.map((feature) => turf.clone(feature));
+  features.map((feature) => clone(feature));
 
 /**
  * 주어진 geojson을 포함하는 boundbox의 coordinate 배열을 반환합니다.
@@ -39,8 +41,7 @@ export const getBboxCoordinates = (
 
   // 주어진 GeoJSON의 bounding box를 구함 (위도, 경도가 번갈아가며 놓인 배열)
   return (
-    turf
-      .bbox(geoJson)
+    bbox(geoJson)
       // bounding box를 순회하며 위도 경도가 한쌍인 이차원 배열로 변환
       .reduce<[number, number][]>((result, value, index, array) => {
         if (index % 2 === 0)
@@ -65,7 +66,7 @@ export const getCircleBboxCoordinates = (
   center: Coordinates,
   radiusInMeter: number
 ): Coordinates[] => {
-  const feature = turf.circle([center.lng, center.lat], radiusInMeter, {
+  const feature = circle([center.lng, center.lat], radiusInMeter, {
     units: "meters",
   });
   return getBboxCoordinates(feature);

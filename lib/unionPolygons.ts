@@ -2,7 +2,7 @@ import { Feature, MultiPolygon, Polygon, Position } from "geojson";
 import * as martinez from "martinez-polygon-clipping";
 import { from, Observable, of } from "rxjs";
 import { concatMap, delay, map, reduce } from "rxjs/operators";
-import * as turf from "@turf/turf";
+import { polygon, multiPolygon } from "@turf/helpers";
 import { is3DPosition } from "./GeoUtils";
 
 type PolygonCoordinates = Position[][] | Position[][][];
@@ -38,8 +38,8 @@ export const unionPolygons = (
     map(
       (unionedCoordinates) =>
         (is3DPosition(unionedCoordinates!)
-          ? turf.multiPolygon(unionedCoordinates)
-          : turf.polygon(unionedCoordinates!)) as Feature<
+          ? multiPolygon(unionedCoordinates)
+          : polygon(unionedCoordinates!)) as Feature<
           Polygon | MultiPolygon
         >
     )

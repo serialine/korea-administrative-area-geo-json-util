@@ -36,7 +36,10 @@
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "@turf/turf": "^6.3.0",
+    "@turf/bbox": "^6.3.0",
+    "@turf/circle": "^6.3.0",
+    "@turf/clone": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
     "lru-cache": "^6.0.0",
     "martinez-polygon-clipping": "^0.7.0",
     "rxjs": "^6.6.3"
