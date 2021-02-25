@@ -2,7 +2,7 @@ import { Feature, MultiPolygon, Polygon, Position } from "geojson";
 import * as martinez from "martinez-polygon-clipping";
 import { from, Observable, of } from "rxjs";
 import { concatMap, delay, map, reduce } from "rxjs/operators";
-import * as turf from "@turf/turf";
+import { multiPolygon, polygon } from "@turf/turf";
 import { is3DPosition } from "./GeoUtils";
 
 type PolygonCoordinates = Position[][] | Position[][][];
@@ -26,7 +26,7 @@ export const unionPolygons = (
 
   return from(polygons).pipe(
     // 폴리곤 => 위경도 배열로 매핑
-    map((polygon) => polygon.geometry.coordinates),
+    map((_polygon) => _polygon.geometry.coordinates),
     // 1ms씩 딜레이를 주어 전달 (스레드를 너무 오래 블락하지 않도록)
     concatMap((value) => of(value).pipe(delay(1))),
     // 위경도 배열의 배열을 순회하며 하나로 병합
@@ -38,10 +38,8 @@ export const unionPolygons = (
     map(
       (unionedCoordinates) =>
         (is3DPosition(unionedCoordinates!)
-          ? turf.multiPolygon(unionedCoordinates)
-          : turf.polygon(unionedCoordinates!)) as Feature<
-          Polygon | MultiPolygon
-        >
+          ? multiPolygon(unionedCoordinates)
+          : polygon(unionedCoordinates!)) as Feature<Polygon | MultiPolygon>
     )
   );
 };

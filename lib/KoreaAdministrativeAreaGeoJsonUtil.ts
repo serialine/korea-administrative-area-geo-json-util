@@ -1,7 +1,7 @@
 import { FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import { of } from "rxjs";
 import { concatMap, map } from "rxjs/operators";
-import * as turf from "@turf/turf";
+import { featureCollection } from "@turf/turf";
 import {
   AdministrativeAreaFeature,
   AdministrativeAreaFeatureCollection,
@@ -75,7 +75,7 @@ export class KoreaAdministrativeAreaGeoJsonUtil {
         map((unionedFeature) =>
           unionedFeature === null
             ? unionedFeature
-            : (turf.featureCollection([unionedFeature]) as FeatureCollection<
+            : (featureCollection([unionedFeature]) as FeatureCollection<
                 Polygon | MultiPolygon
               >)
         )
