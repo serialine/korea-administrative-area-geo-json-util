@@ -26,7 +26,7 @@ export const unionPolygons = (
 
   return from(polygons).pipe(
     // 폴리곤 => 위경도 배열로 매핑
-    map((polygon) => polygon.geometry.coordinates),
+    map((_polygon) => _polygon.geometry.coordinates),
     // 1ms씩 딜레이를 주어 전달 (스레드를 너무 오래 블락하지 않도록)
     concatMap((value) => of(value).pipe(delay(1))),
     // 위경도 배열의 배열을 순회하며 하나로 병합
@@ -39,9 +39,7 @@ export const unionPolygons = (
       (unionedCoordinates) =>
         (is3DPosition(unionedCoordinates!)
           ? multiPolygon(unionedCoordinates)
-          : polygon(unionedCoordinates!)) as Feature<
-          Polygon | MultiPolygon
-        >
+          : polygon(unionedCoordinates!)) as Feature<Polygon | MultiPolygon>
     )
   );
 };
