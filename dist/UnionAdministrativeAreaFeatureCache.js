@@ -1,4 +1,10 @@
-import LRU from "lru-cache";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UnionAdministrativeAreaFeatureCache = void 0;
+const lru_cache_1 = __importDefault(require("lru-cache"));
 /**
  * 행정구역 geojson 캐시
  * key: 행정구역 id 배열
@@ -6,9 +12,9 @@ import LRU from "lru-cache";
  *
  * 캐시 갯수가 200건이 넘어갈 경우 LRU 알고리즘에 따라 기존 캐시를 제거하여 최대 200건을 유지합니다.
  */
-export class UnionAdministrativeAreaFeatureCache {
+class UnionAdministrativeAreaFeatureCache {
     constructor() {
-        this.cache = new LRU(200); // 캐시
+        this.cache = new lru_cache_1.default(200); // 캐시
         this.keys = [];
         /**
          * 행정구역 id 배열을 key로 사용하기 위해 string으로 serialize 합니다.
@@ -54,3 +60,4 @@ export class UnionAdministrativeAreaFeatureCache {
         };
     }
 }
+exports.UnionAdministrativeAreaFeatureCache = UnionAdministrativeAreaFeatureCache;
