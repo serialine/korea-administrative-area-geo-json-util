@@ -1,0 +1,1 @@
+export { KoreaAdministrativeAreaGeoJsonUtil } from "./KoreaAdministrativeAreaGeoJsonUtil";
